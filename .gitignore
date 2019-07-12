@@ -1,6 +1,6 @@
 /venv/
-/data/
-/SOLUTION/
+*.png
+*.jpg
 /doc/
 .idea
-/src/dafne_mod.py
+/src/dafne2.py
