@@ -48,7 +48,7 @@ def ricomponi(frammento , immagine_intera, output):
 
 	matcher = cv2.DescriptorMatcher_create(cv2.DescriptorMatcher_FLANNBASED)
 	
-	knn_matches = matcher.knnMatch(surf_des1, surf_des2, 2)
+	knn_matches = matcher.knnMatch(surf_des1, surf_des2, k=2)
 
 	ratio_thresh = 0.7
 	good_matches = []
@@ -176,7 +176,7 @@ def ricomponi(frammento , immagine_intera, output):
 	#-- Step 2: Matching descriptor vectors with a FLANN based matcher
 	# Since SURF is a floating-point descriptor NORM_L2 is used
 	matcher = cv2.DescriptorMatcher_create(cv2.DescriptorMatcher_FLANNBASED)
-	knn_matches = matcher.knnMatch(surf_des1, surf_des2, 2)
+	knn_matches = matcher.knnMatch(surf_des1, surf_des2, k=2)
 
 	#-- Filter matches using the Lowe's ratio test
 	ratio_thresh = 0.9
@@ -283,7 +283,7 @@ testo = ""
 
 for fresco_fld in fresco_folders:
 	if not (fresco_fld.startswith('.')):#in case you are working on OsX, this avoids to include .DS_Store
-		print(fresco_fld)
+		#print(fresco_fld)
 
 		img_number = int(fresco_fld[0:2])
 		img_name = fresco_fld[3:] #cut the number in front of the folder name
@@ -306,15 +306,16 @@ for fresco_fld in fresco_folders:
 			try:
 
 				image_input = frag_folder + "frag_eroded_" + str(index_folder) + '.png'
-				print(image_input)
+				#print(image_input)
 				ax, ay, arot = ricomponi(image_input, img_path, output)
 
 				elapsed_1 = time.time() - t
 				t = elapsed_1
 
-				print(index_folder, " : ---- : ", t)
-				testo = testo + "\n" + str(index_folder) + ", " + str(ax) + ", " + str(ay) + ", " + str(arot)
-				print(testo)
+				#print(index_folder, " : ---- : ", t)
+				newline = str(index_folder) + ", " + str(ax) + ", " + str(ay) + ", " + str(arot)
+				testo = testo + "\n" + newline
+				print(newline)
 
 			except:
 				print("fail: ", index_folder)
