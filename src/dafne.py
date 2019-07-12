@@ -102,8 +102,8 @@ def ricomponi(frammento , immagine_intera, output):
 
 			#print(dist_1 , "  -- distanze --  " , dist_2)
 			if(dist_1 != 0 and dist_2 != 0 and dist_1 == dist_2):
-				print(dist_1 , "  -- distanze --  " , dist_2)
-				print("------------------ ENTER -----------------------")
+				#print(dist_1 , "  -- distanze --  " , dist_2)
+				#print("------------------ ENTER -----------------------")
 				#dist_minima = dist_mom
 				origine_big = origine
 				destino_big = destino
@@ -260,9 +260,30 @@ def ricomponi(frammento , immagine_intera, output):
 	
 testo = ""
 
+parser = argparse.ArgumentParser(description='')
+parser.add_argument('-d', '--dbfld', dest='data_folder', type=str, default='../data/DAFNE_DB2/',
+                        help='The dataset folder.')
+parser.add_argument('-l','--list', dest="fresco_folders", nargs='+', help='<Required> Set flag', required=True)
+parser.add_argument('-o', '--outfolder', dest='output_folder', type=str, default='../SOLUTION/')
+
+args = parser.parse_args()
+
+data_folder = args.data_folder
+fresco_folders = args.fresco_folders;
+output_folder = args.output_folder;
+try:
+	os.mkdir(output_folder)
+except:
+	print("Folder already exists")
+
+#data_folder = "../data/DAFNE_DB2/"
+#folder = ["01_Domenichino_Virgin-and-unicorn", "02_Zuccari_Cardinal-hat", "03_Andrea-di-Bonaiuto_Via-Veritas"]
+testo = ""
+
 
 for fresco_fld in fresco_folders:
 	if not (fresco_fld.startswith('.')):#in case you are working on OsX, this avoids to include .DS_Store
+		print(fresco_fld)
 
 		img_number = int(fresco_fld[0:2])
 		img_name = fresco_fld[3:] #cut the number in front of the folder name
@@ -306,4 +327,3 @@ for fresco_fld in fresco_folders:
 elapsed = time.time() - t
 
 print(elapsed)
-
