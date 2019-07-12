@@ -1,16 +1,8 @@
-# prove6.py prende il primo pezzettino e con la funzione surf lo posizione correttamente nel riquadro
-# in questo programma invece usiamo la funzione sift ma prendiamo solo 3 keypoint 
-
-# cd pycharmprojects/dafne_python/test
-# conda activate dafne
-# python dafne.py
-
 import cv2
-#import numpy as np
-#from matplotlib import pyplot as plt
 import os
 import math
 import time
+import argparse
 
 t = time.time()
 
@@ -250,13 +242,26 @@ def ricomponi(frammento , immagine_intera, output):
 	
 
 
+
+
+parser = argparse.ArgumentParser(description='')
+parser.add_argument('-d', '--dbfld', dest='data_folder', type=str, default='../data/DAFNE_DB2/',
+                        help='The dataset folder.')
+parser.add_argument('-l','--list', nargs='+', help='<Required> Set flag', required=True)
+parser.add_argument('-o', '--outfolder', dest='output_folder', type=str, default='../SOLUTION/')
+
+args = parser.parse_args()
+
+output_folder = args.output_folder;
+data_folder = args.data_folder;
+folder = args._get_kwargs();
 try:
-	os.mkdir("../SOLUTION")
+	os.mkdir(output_folder)
 except:
 	print("Folder already exists")
 
-data_folder = "../data/DAFNE_DB2/"
-folder = ["01_Domenichino_Virgin-and-unicorn", "02_Zuccari_Cardinal-hat", "03_Andrea-di-Bonaiuto_Via-Veritas"]
+#data_folder = "../data/DAFNE_DB2/"
+#folder = ["01_Domenichino_Virgin-and-unicorn", "02_Zuccari_Cardinal-hat", "03_Andrea-di-Bonaiuto_Via-Veritas"]
 testo = ""
 
 
@@ -271,7 +276,7 @@ for fresco_fld in os.listdir(data_folder):
 		frag_folder = data_folder + fresco_fld+ "/frag_eroded/" #fragments path
 
 		whole_img = cv2.imread(img_path, 0) #this contains the whole img in GrayScale
-		output = '../SOLUTION/RECONSTRUCTED_fresco_' + str(img_name) + '.png'
+		output = output_folder+'/RECONSTRUCTED_fresco_' + str(img_name) + '.png'
 		cv2.imwrite(output, whole_img)
 
 		max = 0
@@ -280,7 +285,7 @@ for fresco_fld in os.listdir(data_folder):
 			if (frag_no > max):
 				max = frag_no
 
-		for index_folder in range(0, max + 1):
+		for index_folder in range(0, max +1):
 
 			try:
 
@@ -298,24 +303,10 @@ for fresco_fld in os.listdir(data_folder):
 			except:
 				print("fail: ", index_folder)
 
-		testo_out = output = './SOLUTION/fragment_' + str(img_number) + '.txt'
+		testo_out = output_folder+ '/fragment_' + str(img_number) + '.txt'
 		out_file = open(testo_out, "w")
 		out_file.write(testo)
 		out_file.close()
-
-
-
-
-
-
-
-
-					
-
-
-
-
-
 
 elapsed = time.time() - t
 

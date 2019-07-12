@@ -31,7 +31,8 @@ For executing the project, simply
 
 ```
 
-python dafne.py
+python dafne.py -d <dataset_folder> -l <list of fresco folders space-separated> -o <output_folder>
+ 
 
 ```
 
@@ -47,6 +48,7 @@ The folder must contain a frag_eroded folder which contains a set of fragments n
 
 #Output
 A SOLUTION folder is created, containing a reconstructed image (with .png extension) for each reconstructed fresco/set of fragments.
+Also, a txt file containing list of fragments positions and rotation degree is returned.
 
 
 ## Note
