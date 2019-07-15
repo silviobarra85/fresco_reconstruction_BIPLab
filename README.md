@@ -1,6 +1,6 @@
 # Fresco Reconstruction (BIPLAB)
 
-For each set of fragments, the reconstructed fresco is generatedl.
+For each set of fragments, the reconstructed fresco is generated.
 The reference dataset are:
 - [Digital Anastylosis of Frescoes challeNgE (DAFNE) Dataset ANASTYLOSIS DB1 - for development](https://vision.unipv.it/DAFchallenge/ANASTYLOSIS%20DB1/dataset_ANASTYLOSIS-DB1.html)
 - [Digital Anastylosis of Frescoes challeNgE (DAFNE) Dataset ANASTYLOSIS DB2 - for testing](https://vision.unipv.it/DAFchallenge/ANASTYLOSIS%20DB2/dataset_ANASTYLOSIS-DB2.html)
@@ -31,7 +31,7 @@ For executing the project, simply
 
 ```
 
-python dafne.py -d <dataset_folder> -l <list of fresco folders space-separated> -o <output_folder>
+python dafne.py -d <dataset_folder> -l <list of fresco folders space-separated>
  
 
 ```
@@ -64,4 +64,4 @@ Some warning may appear during execution.
 
 - Paola Barra (@Paps90)
 - Silvio Barra (@silviobarra85)
-- Fabio Narducci
+- Fabio Narducci (fnarducci)

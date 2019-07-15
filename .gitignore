@@ -1,6 +1,5 @@
 /venv/
-*.png
-*.jpg
+/data/
 /doc/
 .idea
 /src/dafne2.py
